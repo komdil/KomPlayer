@@ -1,50 +1,74 @@
 package com.komapps.komplayer.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.komapps.komplayer.R;
 
-public class MusicAdapter extends BaseAdapter {
-    Context context;
-    String countryList[];
-    int flags[];
-    LayoutInflater inflter;
+import java.util.ArrayList;
 
-    public MusicAdapter(Context applicationContext, String[] countryList, int[] flags) {
-        this.context = context;
-        this.countryList = countryList;
-        this.flags = flags;
-        inflter = (LayoutInflater.from(applicationContext));
+public class MusicAdapter extends BaseAdapter {
+    private ArrayList<MusicContainer> mainList;
+    private Context context;
+    private String countryList[];
+    private int flags[];
+    private LayoutInflater inflter;
+
+    public MusicAdapter(Context applicationContext, ArrayList<MusicContainer> musics) {
+        this.context = applicationContext;
+        mainList = musics;
     }
 
     @Override
     public int getCount() {
-        return countryList.length;
+        return mainList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return mainList.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.musics_listvew_item, null);
-        TextView country = (TextView) view.findViewById(R.id.musicText);
-        ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        country.setText(countryList[i]);
-        icon.setImageResource(flags[i]);
+    public View getView(final int position, View view, ViewGroup parent) {
+
+        if (view == null) {
+
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.musics_listvew_item, null);
+        }
+        SetupItem(view, mainList.get(position));
         return view;
+    }
+
+    void SetupItem(View view, MusicContainer musicContainer) {
+
+        ImageView musicIcon = (ImageView) view.findViewById(R.id.musicIcon);
+        musicIcon.setImageBitmap(musicContainer.Image);
+
+        TextView titleTextView=(TextView)view.findViewById(R.id.musicTitle);
+        titleTextView.setText(musicContainer.Title);
+
+        TextView subTitleTextView=(TextView)view.findViewById(R.id.musicSubtitle);
+        subTitleTextView.setText(musicContainer.Subtitle);
+
+        TextView durationTextView=(TextView)view.findViewById(R.id.musicDuration);
+        durationTextView.setText(musicContainer.Duration.toString());
     }
 }

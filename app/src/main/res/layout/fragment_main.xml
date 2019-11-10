@@ -23,7 +23,9 @@
         android:id="@+id/MusicListView"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        >
+        android:divider="#00000000"
 
+    >
     </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--android:listSelector="@android:color/transparent"-->

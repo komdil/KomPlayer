@@ -2,5 +2,8 @@
 <resources>
     <color name="colorPrimary">#48709d</color>
     <color name="colorPrimaryDark">#48709d</color>
-    <color name="colorAccent">#fff</color>
+    <color name="vkColor">#48709d</color>
+    <color name="colorAccent">#48709d</color>
+    <color name="textGrayColor">#98999d</color>
+    <color name="searchBarColor">#939393</color>
 </resources>
