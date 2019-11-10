@@ -1,5 +1,8 @@
 package com.komapps.komplayer.ui.main;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.komapps.komplayer.R;
+
+import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -60,12 +65,24 @@ public class PlaceholderFragment extends Fragment {
     }
 
     void SetupAdapter(View view, int indexOfTab) {
-        ListView simpleList;
-        String countryList[] = {"India", "China", "australia", "Portugle", "America", "NewZealand"};
-        int flags[] = {R.drawable.no_music_icon, R.drawable.no_music_icon,
-                R.drawable.no_music_icon, R.drawable.no_music_icon, R.drawable.no_music_icon, R.drawable.no_music_icon};
-        simpleList = (ListView) view.findViewById(R.id.MusicListView);
-        MusicAdapter customAdapter = new MusicAdapter(view.getContext(), countryList, flags);
-        simpleList.setAdapter(customAdapter);
+        ListView musicListView = (ListView) view.findViewById(R.id.MusicListView);
+
+        ArrayList<MusicContainer> musics = getMusics(indexOfTab);
+
+        MusicAdapter customAdapter = new MusicAdapter(view.getContext(), musics);
+        musicListView.setAdapter(customAdapter);
+    }
+
+    private ArrayList<MusicContainer> getMusics(int indexOfTab) {
+        ArrayList<MusicContainer> musics = new ArrayList<>();
+        for (int i = 0; i < 99; i++) {
+            MusicContainer musicContainer = new MusicContainer();
+            musicContainer.Title = "Assalamu alayka" + i;
+            musicContainer.Subtitle = "Moher zain" + i;
+            musicContainer.Duration = 3.26;
+            musicContainer.Image = BitmapFactory.decodeResource(getResources(), R.mipmap.no_mp3_image);
+            musics.add(musicContainer);
+        }
+        return musics;
     }
 }

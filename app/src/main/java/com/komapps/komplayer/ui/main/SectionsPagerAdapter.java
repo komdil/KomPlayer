@@ -10,19 +10,30 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.komapps.komplayer.R;
 
+import java.util.ArrayList;
+
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final String[] TAB_TITLES = new String[]{"Ваши музыки","Плейлисты"};
+    ArrayList<String> Tabs = new ArrayList<String>();
 
-    private final Context mContext;
+    private Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+        setTitlesOfTabs();
+    }
+
+    private void setTitlesOfTabs() {
+        Tabs.add(mContext.getString(R.string.all_musics));
+        Tabs.add(mContext.getString(R.string.playlists));
+        Tabs.add(mContext.getString(R.string.albums));
+        Tabs.add(mContext.getString(R.string.artists));
+        Tabs.add(mContext.getString(R.string.search_musics));
     }
 
     @Override
@@ -35,12 +46,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return TAB_TITLES[position];
+        return Tabs.get(position);
     }
 
     @Override
     public int getCount() {
         // Show 5 total pages.
-        return 2;
+        return Tabs.size();
     }
 }

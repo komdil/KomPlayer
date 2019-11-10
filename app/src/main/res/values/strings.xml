@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">KomPlayer</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="search_label">Поиск музыки</string>
+    <string name="search_label">Search music</string>
+    <string name="play_all">Play all</string>
+    <string name="all_musics">All musics</string>
+    <string name="playlists">Playlists</string>
+    <string name="artists">Artists</string>
+    <string name="albums">Albums</string>
+    <string name="search_musics">Search musics</string>
 </resources>

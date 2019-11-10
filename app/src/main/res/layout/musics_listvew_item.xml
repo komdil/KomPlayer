@@ -3,18 +3,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="5dp"
-    >
+    android:padding="5dp">
+
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/musicIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_launcher_background" />
-    <TextView
-        android:id="@+id/musicText"
-        android:text="Text text text"
-        android:layout_width="fill_parent"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/no_mp3_image_background"
+        android:src="@mipmap/no_mp3_image"
+         />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:textColor="#000" />
+        android:layout_gravity="left"
+        android:minHeight="50dp"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/musicTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="MP3 Title"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/musicSubtitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="MP3 Subtitle"
+            android:textColor="@color/textGrayColor"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:paddingRight="10dp">
+        <TextView
+            android:id="@+id/musicDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/textGrayColor"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/showMore"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/show_more"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/musicDuration"/>
+    </RelativeLayout>
+
+
 </LinearLayout>
