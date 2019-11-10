@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -46,14 +47,25 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        final View root = inflater.inflate(R.layout.fragment_main, container, false);
         final TextView textView = root.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(this, new Observer<String>() {
+        pageViewModel.getIndex().observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(@Nullable Integer index) {
+                textView.setText(index.toString());
+                SetupAdapter(root, index);
             }
         });
         return root;
+    }
+
+    void SetupAdapter(View view, int indexOfTab) {
+        ListView simpleList;
+        String countryList[] = {"India", "China", "australia", "Portugle", "America", "NewZealand"};
+        int flags[] = {R.drawable.no_music_icon, R.drawable.no_music_icon,
+                R.drawable.no_music_icon, R.drawable.no_music_icon, R.drawable.no_music_icon, R.drawable.no_music_icon};
+        simpleList = (ListView) view.findViewById(R.id.MusicListView);
+        MusicAdapter customAdapter = new MusicAdapter(view.getContext(), countryList, flags);
+        simpleList.setAdapter(customAdapter);
     }
 }
